@@ -36,8 +36,9 @@ define logfile::log (
   # I skip this entirely with the expectation that your puppet rules will install
   # the newer version.
   if versioncmp($puppetversion, "3.1.0") > -1 {
-    include ewcs::beaver
-    ewcs::beaver::watch { $name:
+    include beaver
+
+    beaver::watch { $name:
       target                 => $target,
       debug                  => $debug,
       discover_interval      => $discover_interval,
