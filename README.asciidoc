@@ -1,0 +1,45 @@
+logfile puppet module
+=====================
+
+This is the puppet module to manage logfiles, adding them to logratate and, optionally, logstash
+
+License
+-------
+GPLv3
+
+Contact
+-------
+Joe Julian <me@joejulian.name>
+
+Support
+-------
+
+Please log tickets and issues at http://github.com/joejulian/joejulian-logfile[github]
+
+Known Issues
+------------
+
+* This currently only works on RHEL/CentOS
+* This only support using beaver as the logstash listener
+
+Usage
+-----
+
+[source,puppet]
+----
+
+  # You can use bash expansions and globs
+  logfile::log { "syslog files":
+    target => "/var/log/{secure,messages}",
+    type   => "syslog",
+  }
+
+  logfile::log { "apache logs":
+    target => "/var/log/httpd/*_log",
+    type   => "apache",
+  }
+
+  # If you leave off the target, the name will be used
+  logfile::log { "/var/log/myapp/mylog.log":
+    type   => "myapp",
+  }
